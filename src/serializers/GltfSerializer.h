@@ -40,6 +40,7 @@ private:
 	int bufferViewId;
     std::map<const IfcUtil::IfcBaseEntity*, size_t> node_indices_;
     std::vector<size_t> roots_;
+	bool spatial_hierarchy_ = false;
 
 	int writeMaterial(const ifcopenshell::geometry::taxonomy::style::ptr style);
 public:

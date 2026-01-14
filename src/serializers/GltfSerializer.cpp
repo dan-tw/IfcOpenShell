@@ -60,6 +60,7 @@ GltfSerializer::GltfSerializer(const std::string& filename, const ifcopenshell::
 	, tmp_fstream1_(IfcUtil::path::from_utf8(tmp_filename1_).c_str(), std::ios_base::binary)
 	, tmp_fstream2_(IfcUtil::path::from_utf8(tmp_filename2_).c_str(), std::ios_base::binary)
 	, bufferViewId(0)
+	, spatial_hierarchy_(settings.get<ifcopenshell::geometry::settings::GltfSpatialHierarchy>().get())
 	{}
 
 GltfSerializer::~GltfSerializer() {

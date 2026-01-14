@@ -93,11 +93,17 @@ inline namespace settings {
         static constexpr const char* const description = "Introduce a separate Z-Up node into the GlTF hierarchy instead of multiplying the transform into the root node matrices";
         static constexpr bool defaultvalue = false;
     };
+
+	struct GltfSpatialHierarchy : public SettingBase<GltfSpatialHierarchy, bool> {
+		static constexpr const char* const name = "gltf-spatial-hierarchy";
+		static constexpr const char* const description = "Build node hierarchy from IFC spatial structure (Project/Site/Building/Storey[/Space]) and attach elements accordingly";
+		static constexpr bool defaultvalue = false;
+	};
 }
 
 class SerializerSettings : public SettingsContainer <
 	// @todo should we use tuple_cat here to unify the settings into a single class?
-    std::tuple<UseElementNames, UseElementGuids, UseElementStepIds, UseElementTypes, UseYUp, WriteGltfEcef, FloatingPointDigits, BaseUri, WktUseSection, SeparateZUpNode>>
+    std::tuple<UseElementNames, UseElementGuids, UseElementStepIds, UseElementTypes, UseYUp, WriteGltfEcef, FloatingPointDigits, BaseUri, WktUseSection, SeparateZUpNode, GltfSpatialHierarchy>>
 {};
 
 }
