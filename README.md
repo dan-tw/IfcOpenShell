@@ -1,3 +1,41 @@
+TensorWorks IfcConvert Usage:
+============
+
+1. Follow [compiling on linux](https://docs.ifcopenshell.org/ifcopenshell/installation.html#compiling-on-linux) up until step 5 (NOTE: You may need to modify/omit some of the packages)
+2. Use the following CMake command to build IfcConvert with glTF support and the necessary dependencies:
+
+```
+cmake -S ../cmake -B . \
+  -DOCC_LIBRARY_DIR=/usr/lib/x86_64-linux-gnu \
+  -DOCC_INCLUDE_DIR=/usr/include/opencascade \
+  -DCOLLADA_SUPPORT=ON \
+  -DOPENCOLLADA_INCLUDE_DIR=/usr/local/include/opencollada \
+  -DOPENCOLLADA_LIBRARY_DIR=/usr/local/lib/opencollada \
+  -DPCRE_LIBRARY_DIR=/usr/lib/x86_64-linux-gnu \
+  -DHDF5_SUPPORT=OFF \
+  -DCGAL_INCLUDE_DIR=/usr/include \
+  -DGMP_INCLUDE_DIR=/usr/include \
+  -DMPFR_INCLUDE_DIR=/usr/include \
+  -DGMP_LIBRARY_DIR=/usr/lib/x86_64-linux-gnu \
+  -DMPFR_LIBRARY_DIR=/usr/lib/x86_64-linux-gnu \
+  -DJSON_INCLUDE_DIR=/usr/include \
+  -DEIGEN_DIR=/usr/include/eigen3 \
+  -DGLTF_SUPPORT=ON
+```
+3. Build `IfcConvert` with:
+```
+cmake --build . --target IfcConvert -j 9
+```
+4. Building the Docker container (from project root):
+```
+docker build -t ifcconvert-runtime -f dockerfiles/IfcConvert.dockerfile build/ifcconvert
+```
+5. Running IfcConvert in the Docker container:
+```
+docker run --rm -v "$PWD":/work ifcconvert-runtime in.ifc out.glb --gltf-spatial-hierarchy
+```
+
+---
 
 IfcOpenShell 
 ============
