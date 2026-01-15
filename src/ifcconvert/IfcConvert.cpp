@@ -445,6 +445,9 @@ int main(int argc, char** argv) {
     }
 
     po::notify(vmap);
+	if (serializer_settings.get<ifcopenshell::geometry::settings::GltfSpatialHierarchy>().get()) {
+		geometry_settings.set(ifcopenshell::geometry::settings::UseElementHierarchy::name, true);
+	}
 
 	const bool mmap = vmap.count("mmap") != 0;
 	const bool no_progress = vmap.count("no-progress") != 0;

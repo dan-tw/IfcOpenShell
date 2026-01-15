@@ -456,7 +456,7 @@ void GltfSerializer::finalize() {
 	}
 
 	json scene_0;
-    if (geometry_settings().get<ifcopenshell::geometry::settings::UseElementHierarchy>().get()) {
+    if (spatial_hierarchy_ || geometry_settings().get<ifcopenshell::geometry::settings::UseElementHierarchy>().get()) {
         scene_0["nodes"] = roots_;
     } else if (north_rotation_ || ecef_transform_ || z_up_transform_) {
 		scene_0["nodes"] = std::array<size_t, 1>{json_["nodes"].size() - 1};
