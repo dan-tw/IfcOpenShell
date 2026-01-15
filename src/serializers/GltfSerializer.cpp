@@ -285,7 +285,12 @@ void GltfSerializer::write(const IfcGeom::TriangulationElement* o) {
 		}
 	}
 	node["name"] = object_id(o);
-	
+	node["extras"]["stepId"] = o->id();
+	node["extras"]["globalId"] = o->guid();
+	node["extras"]["ifcType"] = o->type();
+	node["extras"]["ifcName"] = o->name();
+	node["extras"]["uniqueId"] = o->unique_id();
+
 	int current_mesh_index;
 
 	// See if this mesh has already been processed
